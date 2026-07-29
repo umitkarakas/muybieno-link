@@ -11,9 +11,8 @@ RUN apk add --no-cache libc6-compat
 # lockfile npm 11 ile üretildi — builder npm'ini hizala (deterministik ci)
 RUN npm install -g npm@11
 COPY package*.json ./
-RUN npm ci
 COPY prisma ./prisma
-RUN npx prisma generate
+RUN npm ci
 COPY . .
 RUN npm run build
 
