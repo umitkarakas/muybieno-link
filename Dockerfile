@@ -8,6 +8,8 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN apk add --no-cache libc6-compat
+# lockfile npm 11 ile üretildi — builder npm'ini hizala (deterministik ci)
+RUN npm install -g npm@11
 COPY package*.json ./
 RUN npm ci
 COPY prisma ./prisma
