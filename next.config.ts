@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   images: {
-    // Shopify CDN görselleri (ProductCard <img> kullanıyor; ileride next/image için)
+    // sharp gerektirmeden çalış (standalone runtime'da native optimize yok)
+    unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "cdn.shopify.com" }],
   },
 };
