@@ -1,0 +1,20 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components — Nav item" subtitle="Resting · active · with badge" viewport="700x300" --><html><head><meta charset="utf-8"><title>Nav items</title><link rel="stylesheet" href="_card.css">
+<style>.nav{display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px}
+.item{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 16px;border-radius:16px;font:500 14px var(--font-sans);color:var(--color-fg-2);transition:all .2s;cursor:pointer}
+.item img{width:20px;height:20px;opacity:.85;margin-right:12px;vertical-align:middle}
+.item.active{background:var(--gradient-active-nav);color:var(--color-fg-1);box-shadow:var(--shadow-nav-active)}
+.item.active img{filter:invert(38%) sepia(63%) saturate(2876%) hue-rotate(229deg) brightness(101%) contrast(101%)}
+.item:hover:not(.active){background:rgba(255,255,255,0.45);transform:translateY(-2px);color:var(--color-fg-1)}
+.spacer{flex:1}
+.bdg{display:inline-grid;place-items:center;height:24px;min-width:24px;padding:0 8px;border-radius:999px;background:#7C6DFF;color:#fff;font:700 12px var(--font-sans);box-shadow:var(--shadow-badge)}
+</style></head>
+<body><div class="card"><div class="col" style="gap:10px">
+  <div class="label">Nav item — resting / active / with badge</div>
+  <div class="nav">
+    <div class="item active"><span><img src="../assets/icons/layout-dashboard.svg" alt="">Dashboard</span></div>
+    <div class="item"><span><img src="../assets/icons/bar-chart-3.svg" alt="">Analytics</span></div>
+    <div class="item"><span><img src="../assets/icons/mail.svg" alt="">Messages</span><span class="bdg">3</span></div>
+    <div class="item"><span><img src="../assets/icons/settings.svg" alt="">Settings</span></div>
+  </div>
+</div></div></body></html>

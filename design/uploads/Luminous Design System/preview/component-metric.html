@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components — Metric card" subtitle="Gradient icon tile + headline + trend" viewport="700x230" --><html><head><meta charset="utf-8"><title>Metric card</title><link rel="stylesheet" href="_card.css">
+<style>.metric{padding:20px;border-radius:24px;border:1px solid rgba(255,255,255,0.7);background:rgba(255,255,255,0.55);backdrop-filter:blur(40px);box-shadow:var(--shadow-glass);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;height:170px}
+.metric::before{content:"";position:absolute;left:16px;right:16px;top:0;height:1px;background:rgba(255,255,255,0.85)}
+.metric::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:var(--inset-glow);pointer-events:none}
+.metric .top{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:1}
+.tile-ic{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;box-shadow:var(--shadow-tile)}
+.tile-ic img{width:20px;height:20px;filter:invert(1)}
+.more{display:grid;place-items:center;width:36px;height:36px;border-radius:14px;color:var(--color-fg-4);background:transparent}
+.metric .v{font-size:30px;font-weight:600;color:var(--color-fg-1);margin-top:8px;letter-spacing:0}
+.metric .l{font-size:14px;font-weight:500;color:var(--color-fg-3)}
+.metric .t{font-size:13px;font-weight:600;color:#22C55E;margin-top:6px}
+</style></head>
+<body><div class="card" style="background:transparent;border:0;box-shadow:none;padding:0">
+<div class="metric" style="margin:0">
+  <div class="top">
+    <div class="tile-ic" style="background:var(--gradient-tile-violet)"><img src="../assets/icons/wallet-cards.svg" alt=""></div>
+    <div class="more"><img src="../assets/icons/more-horizontal.svg" width="18" height="18" alt=""></div>
+  </div>
+  <div style="position:relative;z-index:1">
+    <div class="l">Total Revenue</div>
+    <div class="v">$24,780</div>
+    <div class="t">↗ 12.5% vs last month</div>
+  </div>
+</div>
+</div></body></html>

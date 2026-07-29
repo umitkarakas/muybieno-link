@@ -1,0 +1,143 @@
+// MuyBieno Link — veri modeli
+// Linktree tarzı public sayfa + admin panel + Shopify ürünleri + analytics
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------------------
+// Site geneli marka/konfigürasyon — tekil kayıt (id = 1)
+// ------------------------------------------------------------------
+model SiteConfig {
+  id            Int      @id @default(1)
+  brandName     String   @default("MuyBieno")
+  tagline       String?
+  avatarUrl     String?
+  logoUrl       String?
+  themeColor    String   @default("#111111")
+  accentColor   String   @default("#F59E0B")
+  backgroundCss String? // opsiyonel özel arka plan (gradient vs.)
+  seoTitle      String?
+  seoDescription String?
+  socials       Json     @default("[]") // [{platform, url, icon}]
+  footerText    String?
+  updatedAt     DateTime @updatedAt
+  createdAt     DateTime @default(now())
+}
+
+// ------------------------------------------------------------------
+// Ana linkler — public sayfadaki büyük kutucuklar
+// ------------------------------------------------------------------
+enum LinkCategory {
+  SALES // satış sitesi
+  MARKETPLACE // pazaryerleri
+  FEEDBACK // geri bildirim formu
+  PRODUCTS // ürünler bölümü
+  SOCIAL // sosyal medya
+  CUSTOM // diğer
+}
+
+model LinkBlock {
+  id           String       @id @default(cuid())
+  title        String
+  subtitle     String?
+  description  String?
+  url          String
+  icon         String? // emoji ya da ikon adı
+  imageUrl     String?
+  category     LinkCategory @default(CUSTOM)
+  sortOrder    Int          @default(0)
+  isActive     Boolean      @default(true)
+  openInNewTab Boolean      @default(true)
+  clickCount   Int          @default(0) // denormalize hızlı sayaç
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  events AnalyticsEvent[]
+
+  @@index([category, sortOrder])
+  @@index([isActive])
+}
+
+// ------------------------------------------------------------------
+// Ürünler — Shopify'dan otomatik çekilir
+// ------------------------------------------------------------------
+model Product {
+  id             String   @id @default(cuid())
+  shopifyId      String?  @unique // gid://shopify/Product/...
+  handle         String? // ürün slug
+  sourceUrl      String // eklenen shopify ürün linki
+  title          String
+  description    String?
+  priceAmount    Decimal? @db.Decimal(12, 2)
+  priceCurrency  String   @default("TRY")
+  compareAtPrice Decimal? @db.Decimal(12, 2)
+  imageUrl       String?
+  available      Boolean  @default(true)
+  sortOrder      Int      @default(0)
+  isActive       Boolean  @default(true)
+  clickCount     Int      @default(0)
+  syncedAt       DateTime?
+  syncError      String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  events AnalyticsEvent[]
+
+  @@index([isActive, sortOrder])
+}
+
+// ------------------------------------------------------------------
+// Analytics — ham olaylar
+// ------------------------------------------------------------------
+enum EventType {
+  PAGE_VIEW
+  LINK_CLICK
+  PRODUCT_CLICK
+}
+
+model AnalyticsEvent {
+  id          String    @id @default(cuid())
+  type        EventType
+  linkBlockId String?
+  productId   String?
+  path        String    @default("/")
+  referrer    String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  country     String? // Cloudflare cf-ipcountry
+  device      String? // mobile | tablet | desktop
+  browser     String?
+  ipHash      String? // ham IP saklanmaz, hash'lenir
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+
+  linkBlock LinkBlock? @relation(fields: [linkBlockId], references: [id], onDelete: SetNull)
+  product   Product?   @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([type, createdAt])
+  @@index([createdAt])
+  @@index([linkBlockId])
+  @@index([productId])
+}
+
+// ------------------------------------------------------------------
+// Admin kullanıcıları
+// ------------------------------------------------------------------
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  role         String    @default("admin")
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}

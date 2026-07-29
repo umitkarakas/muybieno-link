@@ -1,0 +1,54 @@
+/* preview cards — shared baseline. All cards self-contained at 700×N. */
+@import url('../colors_and_type.css');
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--page-atmosphere);
+  font-family: var(--font-sans);
+  color: var(--color-fg-1);
+  display: block;
+}
+.card {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+          backdrop-filter: blur(var(--blur-glass));
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+.card::before {
+  content: ""; position: absolute; left: 16px; right: 16px; top: 0; height: 1px;
+  background: rgba(255,255,255,0.85); pointer-events: none;
+}
+.card::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  box-shadow: var(--inset-glow); pointer-events: none;
+}
+.row { display: flex; align-items: center; gap: 12px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.label { font-size: 12px; font-weight: 600; color: var(--color-fg-3); }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--color-fg-3); }
+
+/* Swatch tile */
+.swatch {
+  width: 88px; height: 88px; border-radius: 18px;
+  box-shadow: var(--inset-top-edge), 0 8px 22px rgba(15,23,42,0.08);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 10px; box-sizing: border-box;
+}
+.swatch.sm { width: 64px; height: 64px; padding: 8px; border-radius: 14px; }
+.swatch .hex { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: 0; }
+.swatch.is-light .hex { color: var(--color-fg-1); }
+.swatch-label { margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--color-fg-3); text-align: center; }
+
+.tile {
+  display: grid; place-items: center; border-radius: 16px;
+  box-shadow: var(--shadow-tile);
+}

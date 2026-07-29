@@ -1,0 +1,20 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components — Buttons" subtitle="Primary / secondary / icon / text" viewport="700x210" --><html><head><meta charset="utf-8"><title>Buttons</title><link rel="stylesheet" href="_card.css">
+<style>.btn{height:44px;padding:0 20px;border-radius:16px;border:1px solid rgba(255,255,255,0.7);background:rgba(255,255,255,0.55);font:600 14px/1 var(--font-sans);color:var(--color-fg-1);cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--inset-top-edge);transition:all .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.7)}
+.btn.primary{background:var(--gradient-cta);color:#fff;border-color:transparent;box-shadow:var(--shadow-cta)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn.icon{width:44px;padding:0;justify-content:center}
+.btn.text{background:transparent;border:0;box-shadow:none;color:var(--color-accent-violet-deep);padding:0;height:auto}
+</style></head>
+<body><div class="card"><div class="col" style="gap:14px">
+  <div class="label">Buttons</div>
+  <div class="row" style="gap:12px;flex-wrap:wrap">
+    <button class="btn primary">Upgrade Now <span>→</span></button>
+    <button class="btn">This Month <span style="color:var(--color-fg-4)">⌄</span></button>
+    <button class="btn icon" aria-label="filter"><img src="../assets/icons/filter.svg" width="16" height="16" alt=""></button>
+    <button class="btn text">Upgrade Now →</button>
+    <button class="btn text">View All</button>
+  </div>
+  <div class="mono">Hover: translateY(-2px) + 200ms. Primary uses brand-cta gradient + violet shadow.</div>
+</div></div></body></html>

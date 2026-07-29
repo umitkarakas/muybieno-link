@@ -1,0 +1,32 @@
+/* ============================================================
+   MUYBIENO · SPACING, RADII, LAYOUT TOKENS
+   ============================================================ */
+:root {
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+
+  /* Radii — soft, generous, "pebble" feel */
+  --radius-xs:  8px;
+  --radius-sm:  11px;
+  --radius-md:  14px;   /* buttons, inputs */
+  --radius-lg:  18px;   /* small cards */
+  --radius-xl:  22px;   /* product cards */
+  --radius-2xl: 28px;   /* hero / banner blocks */
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container: 1280px;
+  --gutter: 24px;
+
+  /* Blur (glass surfaces) */
+  --blur-glass: 22px;
+}

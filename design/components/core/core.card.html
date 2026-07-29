@@ -1,0 +1,83 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Core components" subtitle="Button · IconButton · Badge · Input · ProductCard" -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin:0; font-family:var(--font-sans); background:var(--surface); padding:24px; color:var(--text-heading); }
+  h4 { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--text-muted); margin:0 0 12px; }
+  .sec { margin-bottom:26px; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  // Resolve the compiled namespace regardless of its exact name.
+  const NS = window.Muybieno || (function () {
+    for (const k of Object.keys(window)) {
+      const v = window[k];
+      if (v && typeof v === 'object' && v.Button && v.ProductCard) return v;
+    }
+    return {};
+  })();
+  const { Button, IconButton, Badge, Input, ProductCard } = NS;
+
+  function Demo() {
+    return (
+      <div>
+        <div className="sec">
+          <h4>Button</h4>
+          <div className="row">
+            <Button variant="primary" icon="cart">Sepete ekle</Button>
+            <Button variant="secondary">Aboneliği incele</Button>
+            <Button variant="ghost" iconRight="arrowRight">Tümünü gör</Button>
+            <Button variant="primary" size="sm" icon="plus">Ekle</Button>
+            <Button variant="primary" disabled>Tükendi</Button>
+          </div>
+        </div>
+        <div className="sec">
+          <h4>IconButton</h4>
+          <div className="row">
+            <IconButton icon="search" variant="soft" label="Ara" />
+            <IconButton icon="user" variant="soft" label="Hesap" />
+            <IconButton icon="cart" variant="primary" label="Sepet" />
+            <IconButton icon="heart" variant="plain" label="Favori" />
+            <IconButton icon="plus" variant="plain" size={38} />
+            <IconButton icon="minus" variant="plain" size={38} />
+          </div>
+        </div>
+        <div className="sec">
+          <h4>Badge</h4>
+          <div className="row">
+            <Badge variant="soft">Sınırlı</Badge>
+            <Badge variant="solid">Yeni</Badge>
+            <Badge variant="onImage">Çok satan</Badge>
+            <Badge variant="eyebrow">Bu hafta tezgâhta</Badge>
+          </div>
+        </div>
+        <div className="sec">
+          <h4>Input</h4>
+          <div className="row" style={{ maxWidth: 340 }}>
+            <Input icon="search" placeholder="Kahve, ekipman ara…" style={{ flex: 1 }} />
+          </div>
+        </div>
+        <div className="sec">
+          <h4>ProductCard</h4>
+          <div style={{ width: 260 }}>
+            <ProductCard name="Etiyopya Yirgacheffe" roast="Açık Kavrum"
+              notes="Yasemin · Bergamot · Şeftali" priceLabel="₺285" badge="Yeni" tone="#8A5A2E" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

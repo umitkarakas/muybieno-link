@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components — Task row" subtitle="Nested glass row with priority pill" viewport="700x230" --><html><head><meta charset="utf-8"><title>Task row</title><link rel="stylesheet" href="_card.css">
+<style>.row-i{display:flex;align-items:center;gap:12px;padding:12px;border-radius:24px;border:1px solid rgba(255,255,255,0.55);background:rgba(255,255,255,0.36);box-shadow:inset 0 1px 0 rgba(255,255,255,.68)}
+.tile-ic{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;border:1px solid}
+.tile-ic.f{background:#FAE8FF;color:#A21CAF;border-color:rgba(232,121,249,.55)}
+.tile-ic.s{background:#E0F2FE;color:#0369A1;border-color:rgba(125,211,252,.55)}
+.tile-ic.e{background:#D1FAE5;color:#047857;border-color:rgba(110,231,183,.55)}
+.tile-ic img{width:16px;height:16px;filter:saturate(2)}
+.row-i .name{font:600 14px var(--font-sans);color:var(--color-fg-1)}
+.row-i .date{font:600 12px var(--font-sans);color:var(--color-fg-3);margin-top:3px}
+.tag{padding:4px 10px;border-radius:999px;font:700 12px var(--font-sans)}
+</style></head>
+<body><div class="card"><div class="col" style="gap:10px">
+  <div class="label">Task row — nested glass row inside parent card</div>
+  <div class="row-i">
+    <div class="tile-ic f"><img src="../assets/icons/sparkles.svg" alt=""></div>
+    <div style="flex:1">
+      <div class="name">Design System Audit</div>
+      <div class="date">May 24, 2024</div>
+    </div>
+    <span class="tag" style="background:rgba(232,121,249,.18);color:#A21CAF">High</span>
+  </div>
+  <div class="row-i">
+    <div class="tile-ic s"><img src="../assets/icons/users.svg" alt=""></div>
+    <div style="flex:1">
+      <div class="name">User Research</div>
+      <div class="date">May 28, 2024</div>
+    </div>
+    <span class="tag" style="background:rgba(125,211,252,.22);color:#0369A1">Medium</span>
+  </div>
+</div></div></body></html>

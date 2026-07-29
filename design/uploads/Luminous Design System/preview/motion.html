@@ -1,0 +1,16 @@
+<!doctype html>
+<!-- @dsCard group="Spacing" name="Spacing — Motion" subtitle="200ms · ease · lift -2px" viewport="700x210" --><html><head><meta charset="utf-8"><title>Motion</title><link rel="stylesheet" href="_card.css">
+<style>.demo{display:flex;gap:14px;align-items:center}
+.lift{width:120px;height:80px;border-radius:18px;background:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.7);box-shadow:var(--shadow-glass);display:grid;place-items:center;font:600 12px var(--font-sans);color:var(--color-fg-2);transition:transform .2s, box-shadow .2s;cursor:pointer}
+.lift:hover{transform:translateY(-2px);box-shadow:var(--shadow-glass-lg)}
+.cta{height:44px;padding:0 20px;border-radius:16px;background:var(--gradient-cta);color:#fff;font:600 14px var(--font-sans);border:0;box-shadow:var(--shadow-cta);transition:all .2s;cursor:pointer}
+.cta:hover{transform:translateY(-2px);filter:brightness(1.05)}
+</style></head>
+<body><div class="card"><div class="col" style="gap:12px">
+  <div class="label">Motion — duration 200ms, default ease, hover lift -2px</div>
+  <div class="demo">
+    <div class="lift">hover me</div>
+    <button class="cta">Upgrade Now →</button>
+  </div>
+  <div class="mono">No bounces, no spring physics, no scroll-driven animation. Quiet.</div>
+</div></div></body></html>

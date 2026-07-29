@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Components — Glass card anatomy" subtitle="5-layer build of the core surface" viewport="700x300" --><html><head><meta charset="utf-8"><title>Glass card anatomy</title><link rel="stylesheet" href="_card.css">
+<style>.demo{position:relative;height:200px;border-radius:24px;border:1px solid rgba(255,255,255,0.7);background:rgba(255,255,255,0.55);backdrop-filter:blur(40px);box-shadow:var(--shadow-glass);overflow:hidden}
+.demo::before{content:"";position:absolute;left:16px;right:16px;top:0;height:1px;background:rgba(255,255,255,0.85)}
+.demo::after{content:"";position:absolute;inset:0;box-shadow:var(--inset-glow);border-radius:inherit;pointer-events:none}
+.demo .lbl{position:absolute;font-size:10px;font-weight:700;color:#7C6DFF;background:rgba(255,255,255,.85);padding:3px 7px;border-radius:6px;box-shadow:0 4px 10px rgba(15,23,42,.06)}
+</style></head>
+<body><div class="card"><div class="col" style="gap:10px">
+  <div class="label">Glass card anatomy</div>
+  <div class="demo">
+    <div class="lbl" style="left:16px;top:6px">① top-edge sheen — inset 16px, 1px, white/85</div>
+    <div class="lbl" style="left:16px;top:36px">② fill — rgba(255,255,255,0.55) over backdrop-blur 40px</div>
+    <div class="lbl" style="left:16px;top:64px">③ border — 1px white/65</div>
+    <div class="lbl" style="left:16px;top:92px">④ inner glow — inset 0 1px 26px rgba(255,255,255,.42)</div>
+    <div class="lbl" style="left:16px;bottom:14px">⑤ drop shadow — 0 20px 60px rgba(15,23,42,.10)</div>
+  </div>
+</div></div></body></html>

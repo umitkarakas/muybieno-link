@@ -1,0 +1,74 @@
+/* ============================================================
+   MUYBIENO · COLOR TOKENS
+   "Artisanal Brew Narrative" — espresso + toasted almond on warm white.
+   Base ramps first, then semantic aliases.
+   ============================================================ */
+:root {
+  /* --- Espresso (primary brand ramp) --- */
+  --espresso-900: #1B0D0A;
+  --espresso-800: #271310;
+  --espresso-700: #3E2723;
+  --espresso-600: #5B403C;
+  --espresso-500: #6F4A2A;
+  --espresso-400: #8A6A3C;
+
+  /* --- Toasted almond (tertiary / accent ramp) --- */
+  --almond-700: #7B4F27;  /* deep — badges, accent text on light */
+  --almond-600: #936B2F;  /* gold — prices, eyebrows */
+  --almond-500: #B0895A;  /* light — ratings, accent tiles */
+  --almond-300: #D8BE97;
+
+  /* --- Warm neutrals (text + lines) --- */
+  --ink-900: #1B1C1A;     /* on-surface / headings */
+  --ink-700: #504442;     /* on-surface-variant / body */
+  --ink-500: #655D5A;     /* muted / captions */
+  --ink-400: #827472;     /* outline / placeholder */
+  --ink-300: #A99A8C;     /* faint / disabled */
+
+  /* --- Surfaces --- */
+  --surface:        #FBF9F5;  /* page background (warm white) */
+  --surface-card:   #FFFFFF;  /* crisp card */
+  --surface-latte:  #F5F2ED;  /* inset / input / secondary fill */
+  --surface-inverse:#1B1C1A;  /* dark utility bar */
+
+  /* --- Cream (text/ink on dark espresso) --- */
+  --cream-100: #FBF3E7;
+  --cream-200: #F3E0C2;
+  --cream-300: #E8D5B5;
+
+  /* --- Hairlines & dividers (warm, primary-tinted) --- */
+  --line:        rgba(39,19,16,0.10);
+  --line-strong: rgba(39,19,16,0.14);
+  --line-faint:  rgba(39,19,16,0.06);
+
+  /* --- Shadows (warm, primary-tinted — never cool slate) --- */
+  --shadow-sm: 0 8px 20px rgba(39,19,16,0.06);
+  --shadow-md: 0 16px 38px rgba(39,19,16,0.08);
+  --shadow-lg: 0 28px 60px rgba(39,19,16,0.14);
+  --shadow-cta: 0 18px 34px rgba(124,80,40,0.28);
+
+  /* ---------- SEMANTIC ALIASES ---------- */
+  --color-bg:            var(--surface);
+  --color-card:          var(--surface-card);
+  --color-inset:         var(--surface-latte);
+  --text-heading:        var(--ink-900);
+  --text-body:           var(--ink-700);
+  --text-muted:          var(--ink-500);
+  --text-placeholder:    var(--ink-400);
+  --text-disabled:       var(--ink-300);
+
+  --color-primary:       var(--espresso-700);
+  --color-primary-deep:  var(--espresso-800);
+  --color-on-primary:    var(--cream-100);
+  --color-accent:        var(--almond-600);   /* prices, eyebrows */
+  --color-accent-deep:   var(--almond-700);   /* badges */
+  --color-accent-soft:   var(--almond-500);   /* ratings */
+
+  /* primary CTA gradient */
+  --gradient-primary: linear-gradient(135deg, #271310 0%, #3E2723 55%, #5B403C 100%);
+  /* almond accent tile gradient */
+  --gradient-accent:  linear-gradient(135deg, #8A6A3C 0%, #B0895A 100%);
+
+  --color-on-accent:     var(--cream-100);
+  --color-success:       #2E7D55;
+}

@@ -1,0 +1,16 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo" subtitle="Wordmark on light, latte, and (in a safe-area chip) on espresso" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;font-family:var(--font-sans);background:var(--surface);padding:0;display:flex;gap:0;height:200px;}
+  .cell{flex:1;display:flex;align-items:center;justify-content:center;}
+  .light{background:var(--surface-card);}
+  .dark{background:var(--gradient-primary);}
+  .latte{background:var(--surface-latte);}
+  img.word{height:46px;width:auto;}
+  .chip{background:#fff;border-radius:14px;padding:14px 22px;box-shadow:var(--shadow-md);}
+  .chip img{height:38px;width:auto;display:block;}
+</style></head><body>
+  <div class="cell light"><img class="word" src="../assets/muybieno-wordmark.png" alt="Muybieno"></div>
+  <div class="cell dark"><div class="chip"><img src="../assets/muybieno-wordmark.png" alt="Muybieno"></div></div>
+  <div class="cell latte"><img class="word" src="../assets/muybieno-wordmark.png" alt="Muybieno"></div>
+</body></html>

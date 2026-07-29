@@ -1,0 +1,41 @@
+/* ============================================================
+   MUYBIENO · TYPOGRAPHY TOKENS
+   Libre Caslon Text (editorial serif display) + Plus Jakarta Sans (UI/body).
+   ============================================================ */
+:root {
+  --font-display: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Display scale (serif) */
+  --text-hero:        60px;  /* h1 hero */
+  --text-display:     44px;  /* page titles */
+  --text-title:       38px;  /* section titles */
+  --text-heading-lg:  32px;
+  --text-heading:     28px;
+
+  /* UI / body scale (sans) */
+  --text-lg:    17px;
+  --text-md:    15px;
+  --text-base:  14px;
+  --text-sm:    13px;
+  --text-xs:    12px;
+  --text-2xs:   11px;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semi:    600;
+  --weight-bold:    700;
+  --weight-extra:   800;
+
+  /* Line heights */
+  --leading-tight: 1.05;
+  --leading-snug:  1.2;
+  --leading-body:  1.6;
+
+  /* Eyebrow (overline) */
+  --eyebrow-size: 12px;
+  --eyebrow-spacing: 0.16em;
+  --eyebrow-weight: 700;
+}
