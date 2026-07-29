@@ -27,6 +27,7 @@ export default async function EditLinkPage({ params }: { params: Promise<{ id: s
             subtitle: link.subtitle,
             url: link.url,
             icon: link.icon,
+            imageUrl: link.imageUrl,
             category: link.category,
             sortOrder: link.sortOrder,
             isActive: link.isActive,

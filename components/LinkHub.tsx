@@ -6,6 +6,7 @@ import { TileCard, type TileTone } from "./ui/TileCard";
 import { ProductCard } from "./ui/ProductCard";
 import { PageView } from "./PageView";
 import { maskStyle, ICONS } from "./ui/icons";
+import type { MarketBrand } from "@/lib/marketplaces";
 
 export type HubLink = {
   id: string;
@@ -15,6 +16,8 @@ export type HubLink = {
   icon: string;
   tone: TileTone;
   openInNewTab: boolean;
+  imageUrl?: string | null;
+  brand?: MarketBrand | null;
 };
 
 export type HubProduct = {
@@ -37,7 +40,7 @@ type Props = {
   initialTab?: "iletisim" | "urunler";
 };
 
-const MAXW = 560;
+const MAXW = 580;
 
 const eyebrow = {
   fontSize: 12,
@@ -46,21 +49,6 @@ const eyebrow = {
   textTransform: "uppercase" as const,
   color: "var(--color-accent)",
 };
-
-function Grid({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-        gap: 14,
-        marginTop: 14,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 export function LinkHub({
   brandName,
@@ -74,36 +62,39 @@ export function LinkHub({
   const [tab, setTab] = useState<"iletisim" | "urunler">(initialTab);
 
   return (
-    <main style={{ minHeight: "100dvh", background: "var(--surface)", paddingBottom: 96 }}>
+    <main
+      style={{
+        minHeight: "100dvh",
+        paddingBottom: 108,
+        background:
+          "radial-gradient(1100px 520px at 50% -8%, rgba(176,137,90,0.16), transparent 62%)," +
+          "radial-gradient(760px 420px at 108% 8%, rgba(123,79,39,0.08), transparent 60%)," +
+          "radial-gradient(680px 380px at -8% 22%, rgba(176,137,90,0.08), transparent 58%)," +
+          "var(--surface)",
+      }}
+    >
       <PageView />
 
       <div style={{ maxWidth: MAXW, margin: "0 auto", padding: "0 18px" }}>
         {/* kompakt header */}
-        <header
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            padding: "22px 4px 18px",
-          }}
-        >
+        <header style={{ display: "flex", alignItems: "center", gap: 14, padding: "24px 4px 20px" }}>
           <div
             style={{
-              width: 56,
-              height: 56,
+              width: 58,
+              height: 58,
               flex: "none",
-              borderRadius: "var(--radius-lg)",
+              borderRadius: 18,
               overflow: "hidden",
               background: "var(--surface-card)",
               border: "1px solid var(--line)",
-              boxShadow: "var(--shadow-sm)",
+              boxShadow: "var(--shadow-md)",
             }}
           >
             <Image
               src={avatarUrl ?? "/brand/muybieno-square.png"}
               alt={brandName}
-              width={56}
-              height={56}
+              width={58}
+              height={58}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               priority
             />
@@ -113,129 +104,94 @@ export function LinkHub({
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 600,
-                fontSize: 26,
+                fontSize: 27,
                 lineHeight: 1.05,
                 margin: 0,
                 color: "var(--text-heading)",
+                letterSpacing: "-0.01em",
               }}
             >
               {brandName}
             </h1>
             {tagline ? (
-              <p
-                style={{
-                  fontSize: 13,
-                  lineHeight: 1.4,
-                  color: "var(--text-muted)",
-                  margin: "4px 0 0",
-                  fontWeight: 500,
-                }}
-              >
+              <p style={{ fontSize: 13, lineHeight: 1.4, color: "var(--text-muted)", margin: "4px 0 0", fontWeight: 500 }}>
                 {tagline}
               </p>
             ) : null}
           </div>
         </header>
 
-        {/* içerik */}
         {tab === "iletisim" ? (
           <div>
+            {/* İletişim — tek satır carousel */}
             <section>
-              <div style={eyebrow}>İletişim</div>
+              <div style={{ ...eyebrow, marginBottom: 12 }}>İletişim</div>
               {contact.length > 0 ? (
-                <Grid>
+                <div className="mb-carousel">
                   {contact.map((l) => (
                     <TileCard key={l.id} {...l} />
                   ))}
-                </Grid>
+                </div>
               ) : (
-                <p style={{ color: "var(--text-muted)", marginTop: 12, fontSize: 14 }}>
-                  Henüz bağlantı eklenmedi.
-                </p>
+                <p style={{ color: "var(--text-muted)", fontSize: 14 }}>Henüz bağlantı eklenmedi.</p>
               )}
             </section>
 
+            {/* Pazar Yerleri — marka kutucukları */}
             {marketplace.length > 0 ? (
               <section style={{ marginTop: 30 }}>
-                <div style={eyebrow}>Pazar Yerleri</div>
-                <Grid>
+                <div style={{ ...eyebrow, marginBottom: 12 }}>Pazar Yerleri</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
                   {marketplace.map((l) => (
                     <TileCard key={l.id} {...l} />
                   ))}
-                </Grid>
+                </div>
               </section>
             ) : null}
           </div>
         ) : (
           <section>
-            <div style={eyebrow}>Ürünler</div>
+            <div style={{ ...eyebrow, marginBottom: 12 }}>Ürünler</div>
             {products.length > 0 ? (
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                  gap: 14,
-                  marginTop: 14,
-                }}
-              >
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
                 {products.map((p) => (
                   <ProductCard key={p.id} {...p} />
                 ))}
               </div>
             ) : (
-              <p style={{ color: "var(--text-muted)", marginTop: 12, fontSize: 14 }}>
-                Henüz ürün eklenmedi.
-              </p>
+              <p style={{ color: "var(--text-muted)", fontSize: 14 }}>Henüz ürün eklenmedi.</p>
             )}
           </section>
         )}
       </div>
 
-      {/* sabit bottom nav */}
+      {/* floating bottom nav */}
       <nav
         style={{
           position: "fixed",
-          left: 0,
-          right: 0,
-          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          bottom: "calc(16px + env(safe-area-inset-bottom))",
           zIndex: 50,
-          background: "rgba(255,255,255,0.86)",
-          backdropFilter: "blur(22px)",
-          WebkitBackdropFilter: "blur(22px)",
-          borderTop: "1px solid var(--line)",
-          boxShadow: "0 -8px 24px rgba(39,19,16,0.06)",
-          paddingBottom: "env(safe-area-inset-bottom)",
+          display: "flex",
+          gap: 4,
+          padding: 6,
+          borderRadius: 999,
+          background: "rgba(255,255,255,0.72)",
+          backdropFilter: "blur(20px) saturate(1.4)",
+          WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+          border: "1px solid rgba(255,255,255,0.7)",
+          boxShadow: "0 18px 40px rgba(39,19,16,0.18), inset 0 1px 0 rgba(255,255,255,0.6)",
         }}
       >
-        <div
-          style={{
-            maxWidth: MAXW,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 6,
-            padding: "8px 18px",
-          }}
-        >
-          <NavButton
-            label="İletişim"
-            icon="home"
-            active={tab === "iletisim"}
-            onClick={() => setTab("iletisim")}
-          />
-          <NavButton
-            label="Ürünler"
-            icon="package"
-            active={tab === "urunler"}
-            onClick={() => setTab("urunler")}
-          />
-        </div>
+        <NavPill label="İletişim" icon="home" active={tab === "iletisim"} onClick={() => setTab("iletisim")} />
+        <NavPill label="Ürünler" icon="package" active={tab === "urunler"} onClick={() => setTab("urunler")} />
       </nav>
     </main>
   );
 }
 
-function NavButton({
+function NavPill({
   label,
   icon,
   active,
@@ -249,38 +205,26 @@ function NavButton({
   return (
     <button
       onClick={onClick}
-      aria-label={label}
       aria-current={active ? "page" : undefined}
       style={{
-        display: "flex",
-        flexDirection: "column",
+        display: "inline-flex",
         alignItems: "center",
-        justifyContent: "center",
-        gap: 5,
-        padding: "8px 0",
-        borderRadius: "var(--radius-md)",
+        gap: 9,
+        padding: "11px 20px",
+        borderRadius: 999,
         border: "none",
-        background: active ? "rgba(123,79,39,0.10)" : "transparent",
         cursor: "pointer",
-        transition: "background .18s ease",
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
+        fontWeight: 700,
+        color: active ? "var(--color-on-primary)" : "var(--text-body)",
+        background: active ? "var(--gradient-primary)" : "transparent",
+        boxShadow: active ? "var(--shadow-cta)" : "none",
+        transition: "background .2s ease, color .2s ease",
       }}
     >
-      <span
-        style={maskStyle(
-          ICONS[icon],
-          22,
-          active ? "var(--color-primary)" : "var(--text-placeholder)",
-        )}
-      />
-      <span
-        style={{
-          fontSize: 12,
-          fontWeight: 700,
-          color: active ? "var(--color-primary)" : "var(--text-muted)",
-        }}
-      >
-        {label}
-      </span>
+      <span style={maskStyle(ICONS[icon], 19, active ? "var(--cream-100)" : "var(--text-muted)")} />
+      {label}
     </button>
   );
 }

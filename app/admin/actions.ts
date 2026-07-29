@@ -40,6 +40,7 @@ const linkSchema = z.object({
   subtitle: z.string().trim().max(160).optional(),
   url: z.string().trim().min(1, "URL gerekli").max(500),
   icon: z.string().trim().max(60).optional(),
+  imageUrl: z.string().trim().max(500).optional(),
   category: z.enum(["SALES", "MARKETPLACE", "FEEDBACK", "PRODUCTS", "SOCIAL", "CUSTOM"]),
   sortOrder: z.coerce.number().int().default(0),
   isActive: z.boolean().default(true),
@@ -54,6 +55,7 @@ export async function saveLinkAction(_prev: unknown, formData: FormData): Promis
     subtitle: formData.get("subtitle") || undefined,
     url: formData.get("url"),
     icon: formData.get("icon") || undefined,
+    imageUrl: formData.get("imageUrl") || undefined,
     category: formData.get("category"),
     sortOrder: formData.get("sortOrder") || 0,
     isActive: formData.get("isActive") === "on",
@@ -65,6 +67,7 @@ export async function saveLinkAction(_prev: unknown, formData: FormData): Promis
     ...parsed.data,
     subtitle: parsed.data.subtitle ?? null,
     icon: parsed.data.icon ?? null,
+    imageUrl: parsed.data.imageUrl ?? null,
     category: parsed.data.category as LinkCategory,
   };
 

@@ -11,6 +11,7 @@ type LinkValues = {
   subtitle?: string | null;
   url?: string;
   icon?: string | null;
+  imageUrl?: string | null;
   category?: string;
   sortOrder?: number;
   isActive?: boolean;
@@ -67,6 +68,16 @@ export function LinkForm({ values = {} }: { values?: LinkValues }) {
           defaultValue={values.url ?? ""}
           placeholder="https://… veya /geri-bildirim"
           required
+        />
+      </div>
+
+      <div>
+        <label style={labelStyle}>Logo URL (opsiyonel — pazaryeri logoları için)</label>
+        <input
+          name="imageUrl"
+          style={inputStyle}
+          defaultValue={values.imageUrl ?? ""}
+          placeholder="https://…/logo.png"
         />
       </div>
 

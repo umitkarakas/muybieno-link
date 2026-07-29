@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { getSiteConfig } from "@/lib/site";
 import { formatPrice } from "@/lib/format";
-import { ICONS } from "@/components/ui/icons";
+import { ICONS, SOLID_ICONS } from "@/components/ui/icons";
 import { LinkHub, type HubLink, type HubProduct } from "@/components/LinkHub";
+import { marketBrand } from "@/lib/marketplaces";
 import type { LinkBlock } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -35,11 +36,12 @@ const CATEGORY_ICON: Record<string, string> = {
 };
 
 function resolveIcon(l: LinkBlock): string {
-  if (l.icon && ICONS[l.icon]) return l.icon;
+  if (l.icon && (ICONS[l.icon] || SOLID_ICONS[l.icon])) return l.icon;
   return CATEGORY_ICON[l.category] ?? "externalLink";
 }
 
 function toHubLink(l: LinkBlock, tone: "espresso" | "almond"): HubLink {
+  const isMarket = l.category === "MARKETPLACE";
   return {
     id: l.id,
     title: l.title,
@@ -48,6 +50,9 @@ function toHubLink(l: LinkBlock, tone: "espresso" | "almond"): HubLink {
     icon: resolveIcon(l),
     tone,
     openInNewTab: l.openInNewTab,
+    imageUrl: l.imageUrl,
+    // gerçek logo (imageUrl) yoksa pazaryeri marka monogramı
+    brand: isMarket && !l.imageUrl ? marketBrand(l.title) : null,
   };
 }
 
