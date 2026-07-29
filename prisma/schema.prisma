@@ -128,6 +128,22 @@ model AnalyticsEvent {
 }
 
 // ------------------------------------------------------------------
+// Geri bildirim — ziyaretçi mesajları
+// ------------------------------------------------------------------
+model Feedback {
+  id        String   @id @default(cuid())
+  name      String?
+  contact   String? // e-posta veya telefon (opsiyonel)
+  rating    Int? // 1-5
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([handled])
+}
+
+// ------------------------------------------------------------------
 // Admin kullanıcıları
 // ------------------------------------------------------------------
 model AdminUser {

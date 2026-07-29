@@ -34,7 +34,7 @@ async function main() {
     create: { email, passwordHash, name: "Admin", role: "admin" },
   });
 
-  // 3) Başlangıç link kutucukları
+  // 3) Başlangıç link kutucukları — İletişim + Pazar Yerleri
   const starter: Array<{
     title: string;
     subtitle?: string;
@@ -43,12 +43,15 @@ async function main() {
     category: LinkCategory;
     sortOrder: number;
   }> = [
-    { title: "Satış Sitesi", subtitle: "muybieno.com", url: "https://muybieno.com", icon: "🛍️", category: "SALES", sortOrder: 1 },
-    { title: "Ürünler", subtitle: "Tüm ürünlerimiz", url: "/urunler", icon: "📦", category: "PRODUCTS", sortOrder: 2 },
-    { title: "Trendyol", subtitle: "Pazaryeri", url: "https://www.trendyol.com", icon: "🟠", category: "MARKETPLACE", sortOrder: 3 },
-    { title: "Hepsiburada", subtitle: "Pazaryeri", url: "https://www.hepsiburada.com", icon: "🛒", category: "MARKETPLACE", sortOrder: 4 },
-    { title: "Geri Bildirim", subtitle: "Görüşlerinizi paylaşın", url: "#feedback", icon: "💬", category: "FEEDBACK", sortOrder: 5 },
-    { title: "Instagram", subtitle: "@muybieno", url: "https://instagram.com/muybieno", icon: "📸", category: "SOCIAL", sortOrder: 6 },
+    // İletişim
+    { title: "Web Sitesi", subtitle: "muybieno.com", url: "https://muybieno.com", icon: "globe", category: "SALES", sortOrder: 1 },
+    { title: "WhatsApp", subtitle: "Sipariş & destek", url: "https://wa.me/90XXXXXXXXXX", icon: "whatsapp", category: "CUSTOM", sortOrder: 2 },
+    { title: "Geri Bildirim", subtitle: "Görüş bildirin", url: "/geri-bildirim", icon: "messageCircle", category: "FEEDBACK", sortOrder: 3 },
+    // Pazar Yerleri
+    { title: "Trendyol", url: "https://www.trendyol.com", icon: "bag", category: "MARKETPLACE", sortOrder: 4 },
+    { title: "Hepsiburada", url: "https://www.hepsiburada.com", icon: "bag", category: "MARKETPLACE", sortOrder: 5 },
+    { title: "N11", url: "https://www.n11.com", icon: "bag", category: "MARKETPLACE", sortOrder: 6 },
+    { title: "Pazarama", url: "https://www.pazarama.com", icon: "bag", category: "MARKETPLACE", sortOrder: 7 },
   ];
 
   for (const s of starter) {
