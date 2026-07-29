@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+/* ============================================================
+   MUYBIENO · DESIGN TOKENS
+   "Artisanal Brew Narrative" — espresso + toasted almond on warm white.
+   Kaynak: design/tokens/*.css (Claude Design export)
+   Fontlar next/font ile: --font-display (Libre Caslon Text), --font-sans (Plus Jakarta Sans)
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Espresso (primary brand ramp) --- */
+  --espresso-900: #1b0d0a;
+  --espresso-800: #271310;
+  --espresso-700: #3e2723;
+  --espresso-600: #5b403c;
+  --espresso-500: #6f4a2a;
+  --espresso-400: #8a6a3c;
+
+  /* --- Toasted almond (accent ramp) --- */
+  --almond-700: #7b4f27;
+  --almond-600: #936b2f;
+  --almond-500: #b0895a;
+  --almond-300: #d8be97;
+
+  /* --- Warm neutrals --- */
+  --ink-900: #1b1c1a;
+  --ink-700: #504442;
+  --ink-500: #655d5a;
+  --ink-400: #827472;
+  --ink-300: #a99a8c;
+
+  /* --- Surfaces --- */
+  --surface: #fbf9f5;
+  --surface-card: #ffffff;
+  --surface-latte: #f5f2ed;
+  --surface-inverse: #1b1c1a;
+
+  /* --- Cream --- */
+  --cream-100: #fbf3e7;
+  --cream-200: #f3e0c2;
+  --cream-300: #e8d5b5;
+
+  /* --- Lines --- */
+  --line: rgba(39, 19, 16, 0.1);
+  --line-strong: rgba(39, 19, 16, 0.14);
+  --line-faint: rgba(39, 19, 16, 0.06);
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 8px 20px rgba(39, 19, 16, 0.06);
+  --shadow-md: 0 16px 38px rgba(39, 19, 16, 0.08);
+  --shadow-lg: 0 28px 60px rgba(39, 19, 16, 0.14);
+  --shadow-cta: 0 18px 34px rgba(124, 80, 40, 0.28);
+
+  /* --- Semantic aliases --- */
+  --color-bg: var(--surface);
+  --color-card: var(--surface-card);
+  --color-inset: var(--surface-latte);
+  --text-heading: var(--ink-900);
+  --text-body: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-placeholder: var(--ink-400);
+  --text-disabled: var(--ink-300);
+  --color-primary: var(--espresso-700);
+  --color-primary-deep: var(--espresso-800);
+  --color-on-primary: var(--cream-100);
+  --color-accent: var(--almond-600);
+  --color-accent-deep: var(--almond-700);
+  --color-accent-soft: var(--almond-500);
+  --gradient-primary: linear-gradient(135deg, #271310 0%, #3e2723 55%, #5b403c 100%);
+  --gradient-accent: linear-gradient(135deg, #8a6a3c 0%, #b0895a 100%);
+  --color-on-accent: var(--cream-100);
+  --color-success: #2e7d55;
+
+  /* --- Typography (families from next/font; mono here) --- */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --text-hero: 60px;
+  --text-display: 44px;
+  --text-title: 38px;
+  --text-heading-lg: 32px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semi: 600;
+  --weight-bold: 700;
+  --weight-extra: 800;
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-body: 1.6;
+
+  /* --- Spacing / radii / layout --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --radius-xs: 8px;
+  --radius-sm: 11px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-pill: 999px;
+  --container: 1280px;
+  --gutter: 24px;
+  --blur-glass: 22px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text-heading);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
