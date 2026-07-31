@@ -123,13 +123,13 @@ export function LinkHub({
 
         {tab === "iletisim" ? (
           <div>
-            {/* İletişim — alt alta düz liste */}
+            {/* İletişim — 2 sütun grid */}
             <section>
               <div style={{ ...eyebrow, marginBottom: 12 }}>İletişim</div>
               {contact.length > 0 ? (
-                <div style={{ display: "grid", gap: 12 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 14 }}>
                   {contact.map((l) => (
-                    <TileCard key={l.id} {...l} layout="row" />
+                    <TileCard key={l.id} {...l} />
                   ))}
                 </div>
               ) : (
