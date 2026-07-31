@@ -132,26 +132,3 @@ a {
   text-decoration: none;
 }
 
-/* Yatay carousel — scrollbar gizle + snap */
-.mb-carousel {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
-}
-.mb-carousel::-webkit-scrollbar {
-  display: none;
-}
-.mb-carousel > * {
-  scroll-snap-align: start;
-  flex: 0 0 42%;
-  min-width: 140px;
-}
-@media (min-width: 620px) {
-  .mb-carousel > * {
-    flex-basis: 30%;
-  }
-}

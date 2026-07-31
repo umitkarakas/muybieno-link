@@ -123,13 +123,13 @@ export function LinkHub({
 
         {tab === "iletisim" ? (
           <div>
-            {/* İletişim — tek satır carousel */}
+            {/* İletişim — alt alta düz liste */}
             <section>
               <div style={{ ...eyebrow, marginBottom: 12 }}>İletişim</div>
               {contact.length > 0 ? (
-                <div className="mb-carousel">
+                <div style={{ display: "grid", gap: 12 }}>
                   {contact.map((l) => (
-                    <TileCard key={l.id} {...l} />
+                    <TileCard key={l.id} {...l} layout="row" />
                   ))}
                 </div>
               ) : (

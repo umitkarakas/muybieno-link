@@ -6,6 +6,7 @@ import { track } from "@/lib/track-client";
 import type { MarketBrand } from "@/lib/marketplaces";
 
 export type TileTone = "espresso" | "almond";
+export type TileLayout = "tile" | "row";
 
 export type TileCardProps = {
   id?: string;
@@ -14,6 +15,7 @@ export type TileCardProps = {
   url: string;
   icon: string;
   tone?: TileTone;
+  layout?: TileLayout;
   openInNewTab?: boolean;
   imageUrl?: string | null;
   brand?: MarketBrand | null;
@@ -27,6 +29,7 @@ export function TileCard({
   url,
   icon,
   tone = "espresso",
+  layout = "tile",
   openInNewTab = true,
   imageUrl,
   brand,
@@ -84,21 +87,23 @@ export function TileCard({
     </div>
   );
 
+  const isRow = layout === "row";
+
   const cardStyle: CSSProperties = {
     position: "relative",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: isRow ? "row" : "column",
     alignItems: "center",
-    justifyContent: "center",
-    gap: 13,
-    padding: "24px 16px",
-    minHeight: 150,
-    textAlign: "center",
-    borderRadius: 22,
+    justifyContent: isRow ? "flex-start" : "center",
+    gap: isRow ? 16 : 13,
+    padding: isRow ? "16px 18px" : "24px 16px",
+    minHeight: isRow ? undefined : 150,
+    textAlign: isRow ? "left" : "center",
+    borderRadius: isRow ? 20 : 22,
     background: "linear-gradient(180deg,#FFFFFF 0%,#FDFBF7 100%)",
     border: "1px solid var(--line)",
     boxShadow: hover ? "var(--shadow-lg)" : "var(--shadow-md)",
-    transform: hover ? "translateY(-4px)" : "none",
+    transform: hover ? (isRow ? "translateY(-2px)" : "translateY(-4px)") : "none",
     transition: "transform .25s ease, box-shadow .25s ease",
     cursor: "pointer",
     overflow: "hidden",
@@ -128,7 +133,7 @@ export function TileCard({
         }}
       />
       {well}
-      <div>
+      <div style={isRow ? { flex: 1, minWidth: 0 } : undefined}>
         <div style={{ fontSize: 15, fontWeight: 700, color: "var(--text-heading)", letterSpacing: "-0.01em" }}>
           {title}
         </div>
@@ -138,6 +143,17 @@ export function TileCard({
           </div>
         ) : null}
       </div>
+      {isRow ? (
+        <span
+          style={{
+            ...maskStyle(ICONS.chevronRight ?? ICONS.externalLink, 18, "var(--text-muted)"),
+            flex: "none",
+            opacity: hover ? 1 : 0.55,
+            transform: hover ? "translateX(2px)" : "none",
+            transition: "opacity .2s ease, transform .2s ease",
+          }}
+        />
+      ) : null}
     </a>
   );
 }
